@@ -72,6 +72,14 @@ rob_rev_sun_day <- function(
     zoom_level    = 12
 ) {
 
+  stopifnot(
+    is.numeric(location), length(location) == 2L,
+    is.numeric(day_of_year), day_of_year >= 1, day_of_year <= 365,
+    is.numeric(ray_length), ray_length > 0,
+    is.numeric(ray_intervals), ray_intervals > 0, ray_intervals < ray_length,
+    is.numeric(zoom_level), zoom_level >= 1, zoom_level <= 15
+  )
+
   coord_0 <- location
 
   # ---- Solar angles --------------------------------------------------------

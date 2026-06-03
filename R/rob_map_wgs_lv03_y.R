@@ -13,6 +13,7 @@
 #' rob_map_wgs_lv03_y(lat = 46.9481, lon = 7.4474)
 
 rob_map_wgs_lv03_y <- function(lat, lon) {
+  stopifnot(is.numeric(lat), is.numeric(lon))
   lat     <- rob_map_dezsex(lat)
   lon     <- rob_map_dezsex(lon)
   lat_aux <- (lat - 169028.66) / 10000

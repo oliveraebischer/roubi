@@ -4,7 +4,7 @@ Title: Personal R Package
 Description: A collection of personal utility functions for coordinate conversion
     (Swiss LV03 <-> WGS84), sun/shadow analysis, and web scraping of the Swiss
     federal building register (GWR).
-Version: 0.1.3
+Version: 0.1.4
 Author: Oubi Fahrni
 License: MIT + file LICENSE
 Encoding: UTF-8

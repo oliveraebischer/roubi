@@ -13,6 +13,7 @@
 #' rob_map_lv03_wgs_lat(x = 600000, y = 200000)
 
 rob_map_lv03_wgs_lat <- function(x, y) {
+  stopifnot(is.numeric(x), is.numeric(y))
   x_aux <- (x - 600000) / 1000000
   y_aux <- (y - 200000) / 1000000
   lat <- 16.9023892 +

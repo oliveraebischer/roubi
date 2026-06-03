@@ -13,12 +13,12 @@
 #' }
 
 rob_rev_gwr <- function(egid) {
+  stopifnot(is.numeric(egid) || is.character(egid), length(egid) == 1L)
   link <- paste0(
     "https://api.geo.admin.ch/rest/services/ech/MapServer/",
     "ch.bfs.gebaeude_wohnungs_register/",
     egid, "_0/extendedHtmlPopup?lang=de"
   )
   page <- read_html(link)
-  gwr  <- page |> html_node("table") |> html_table()
-  return(gwr)
+  page |> html_element("table") |> html_table()
 }

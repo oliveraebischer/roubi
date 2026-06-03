@@ -8,5 +8,6 @@
 #' rob_str_reverse(c("hello", "world"))
 
 rob_str_reverse <- function(x) {
-  sapply(lapply(strsplit(x, NULL), rev), paste, collapse = "")
+  stopifnot(is.character(x))
+  vapply(strsplit(x, ""), \(chars) paste(rev(chars), collapse = ""), character(1L))
 }
