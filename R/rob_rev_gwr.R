@@ -1,28 +1,24 @@
-#' rob_rev_gwr
+#' Look up a building in the Swiss federal building register (GWR)
 #'
-#' The ouput of the function is a tibble with the buildings characteristics from housing-stat.ch. Either use egid number or the postal address.
+#' Fetches building characteristics from the swisstopo REST API for a given
+#' federal building identifier (EGID) and returns the result as a data frame.
 #'
-#' @param egid: the egid number of the building
-#' @param street the street name of the building (not yet available)
-#' @param street_nr the street nr of the building (not yet available)
-#' @param plz the postal code (not yet available)
-#' @return a tibble
-#' @import tidyverse rvest
+#' @param egid Integer or character. Federal building identifier (EGID).
+#' @return A data frame with the building's GWR attributes.
+#' @import rvest
 #' @export
+#' @examples
+#' \dontrun{
+#' rob_rev_gwr(egid = 1234567)
+#' }
 
-
-
-# function ----------------------------------------------------------------
 rob_rev_gwr <- function(egid) {
-# d_egid <- read_csv2("BE.csv")
-# egid <- d_egid %>%
-#   filter(STRNAME == street & DEINR == street_nr & DPLZ4 == plz) %>%
-#   select(EGID) %>%
-#   as.numeric()
-
-link <- paste0("https://api.geo.admin.ch/rest/services/ech/MapServer/ch.bfs.gebaeude_wohnungs_register/",
-               egid, "_0/extendedHtmlPopup?lang=de")
-
-page <- read_html(link)
-gwr <- page %>% html_node("table") %>% html_table()
+  link <- paste0(
+    "https://api.geo.admin.ch/rest/services/ech/MapServer/",
+    "ch.bfs.gebaeude_wohnungs_register/",
+    egid, "_0/extendedHtmlPopup?lang=de"
+  )
+  page <- read_html(link)
+  gwr  <- page |> html_node("table") |> html_table()
+  return(gwr)
 }
